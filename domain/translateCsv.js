@@ -14,13 +14,15 @@ const ACOES = {
   G: 'Bola de graça (para o próprio time)',
   P: 'Passe',
   PG: 'Passar de graça (para o outro lado)',
-  S: 'Saque'
+  S: 'Saque',
+  X: 'Xeque'
 };
 
-const VARIACAO_ABCN = {
+const VARIACAO_ABCGN = {
   A: 'A',
   B: 'B',
   C: 'C',
+  G: 'De graça pro outro lado',
   N: 'Não deu sequência no rally'
 };
 
@@ -28,6 +30,7 @@ const VARIACOES = {
   A: {
     CH: 'China',
     CM: 'Chute meio',
+    CX: 'Caixinha',
     E: 'Extremidade - Explorando o bloqueio',
     L: 'Largada',
     MF: 'Meio fundo',
@@ -39,12 +42,13 @@ const VARIACOES = {
   },
   B: {
     A: 'Amorteceu para o próprio lado',
+    R: 'Toque na rede',
     V: 'Voltou para o outro lado'
   },
-  C: VARIACAO_ABCN,
-  D: VARIACAO_ABCN,
-  G: VARIACAO_ABCN,
-  P: VARIACAO_ABCN,
+  C: VARIACAO_ABCGN,
+  D: VARIACAO_ABCGN,
+  G: VARIACAO_ABCGN,
+  P: VARIACAO_ABCGN,
   S: {
     C: 'Curto',
     L: 'Longo',
@@ -144,19 +148,19 @@ const traduzirAcaoDeSubstituicao = (linhaCsv) => {
   const [time, quemSai, quemEntra, posicaoDeQuemEntra] = linhaCsv.split(' ').slice(1);
 
   if (time !== 'A' && time !== 'B') {
-    throw new TypeError(`${time} não é um código de time válido`);
+    throw new TypeError(`${time} não é um código de time válido | Linha [${linhaCsv}]`);
   }
 
   if (!transformarParaInteiro(quemSai)) {
-    throw new TypeError('A número de quem sai deve ser um número');
+    throw new TypeError(`O número de quem sai deve ser um número | Linha [${linhaCsv}]`);
   }
 
   if (!transformarParaInteiro(quemEntra)) {
-    throw new TypeError('A número de quem entra deve ser um número');
+    throw new TypeError(`O número de quem entra deve ser um número | Linha [${linhaCsv}]`);
   }
 
   if (!CODIGO_POSICAO_PARA_NOME_POSICAO[posicaoDeQuemEntra]) {
-    throw new TypeError(`${posicaoDeQuemEntra} não é um código de posição válido`);
+    throw new TypeError(`${posicaoDeQuemEntra} não é um código de posição válido | Linha [${linhaCsv}]`);
   }
 
   return {
