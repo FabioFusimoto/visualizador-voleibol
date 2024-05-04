@@ -5,12 +5,14 @@ const jogos = [
   {
     escalacao: escalacaoEniac,
     nome: '[Teste][2023-03-03] Poli x Eniac (CPU)',
-    sets: setsEniac
+    sets: setsEniac,
+    id: 0
   },
   {
     escalacao: escalacaoMedUsp,
     nome: '[Teste][2023-04-28] Poli x Med USP (NDU)',
-    sets: setsMedUsp
+    sets: setsMedUsp,
+    id: 1
   }
 ];
 

@@ -12,7 +12,8 @@ export const resumo = (sequenciaDePontos) => {
       EA: 0,
       EB: 0,
       ES: 0,
-      EO: 0
+      EO: 0,
+      Pontuação: 0
     },
     B: {
       PA: 0,
@@ -22,7 +23,8 @@ export const resumo = (sequenciaDePontos) => {
       EA: 0,
       EB: 0,
       ES: 0,
-      EO: 0
+      EO: 0,
+      Pontuação: 0
     }
   };
 
@@ -54,6 +56,14 @@ export const resumo = (sequenciaDePontos) => {
     acao = acao || 'Outros';
 
     accClone[time][MAPEAMENTO[resultado][acao]] = accClone[time][MAPEAMENTO[resultado][acao]] + 1;
+
+    if (resultado === 'Ponto') {
+      accClone[time].Pontuação = accClone[time].Pontuação + 1;
+    } else {
+      const outroTime = time === 'A' ? 'B' : 'A';
+      accClone[outroTime].Pontuação = accClone[outroTime].Pontuação + 1;
+    }
+
     return accClone;
   }, accInicial);
 };
@@ -72,8 +82,8 @@ export const aproveitamentoGeralDeAtaque = (sequenciaDePontos) => {
 
   const acoesDeAtaquePorTime = agruparPorTime(acoesDeAtaque);
 
-  const A = aproveitamentoGeralDeAtaqueDoTime(acoesDeAtaquePorTime.A);
-  const B = aproveitamentoGeralDeAtaqueDoTime(acoesDeAtaquePorTime.B);
+  const A = aproveitamentoGeralDeAtaqueDoTime(acoesDeAtaquePorTime.A || []);
+  const B = aproveitamentoGeralDeAtaqueDoTime(acoesDeAtaquePorTime.B || []);
 
   return ({ A, B });
 };
@@ -116,8 +126,8 @@ export const aproveitamentoGeralDeBloqueio = (sequenciaDePontos) => {
   const { A: acoesDeBloqueioA, B: acoesDeBloqueioB } = agruparPorTime(acoesDeBloqueio);
 
   return ({
-    A: aproveitamentoGeralDeBloqueioDoTime(acoesDeBloqueioA, acoesDeAtaqueB),
-    B: aproveitamentoGeralDeBloqueioDoTime(acoesDeBloqueioB, acoesDeAtaqueA)
+    A: aproveitamentoGeralDeBloqueioDoTime(acoesDeBloqueioA || [], acoesDeAtaqueB || []),
+    B: aproveitamentoGeralDeBloqueioDoTime(acoesDeBloqueioB || [], acoesDeAtaqueA || [])
   });
 };
 
@@ -157,8 +167,8 @@ export const aproveitamentoGeralDePasse = (sequenciaDePontos) => {
   const { A: acoesDePasseA, B: acoesDePasseB } = agruparPorTime(acoesDePasse);
 
   return ({
-    A: aproveitamentoGeralDePasseDoTime(acoesDePasseA, acoesDeASaqueB),
-    B: aproveitamentoGeralDePasseDoTime(acoesDePasseB, acoesDeSaqueA)
+    A: aproveitamentoGeralDePasseDoTime(acoesDePasseA || [], acoesDeASaqueB || []),
+    B: aproveitamentoGeralDePasseDoTime(acoesDePasseB || [], acoesDeSaqueA || [])
   });
 };
 
@@ -190,7 +200,7 @@ export const aproveitamentoGeralDeDefesa = (sequenciaDePontos) => {
   const { A: acoesDeDefesaA, B: acoesDeDefesaB } = agruparPorTime(acoesDeDefesa);
 
   return ({
-    A: aproveitamentoGeralDeDefesaPorTime(acoesDeDefesaA),
-    B: aproveitamentoGeralDeDefesaPorTime(acoesDeDefesaB)
+    A: aproveitamentoGeralDeDefesaPorTime(acoesDeDefesaA || []),
+    B: aproveitamentoGeralDeDefesaPorTime(acoesDeDefesaB || [])
   });
 };

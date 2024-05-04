@@ -20,7 +20,8 @@ test('resumo deve indicar a quantidade de pontos e erros de cada equipe', () => 
       EA: 5,
       EB: 2,
       ES: 3,
-      EO: 0
+      EO: 0,
+      Pontuação: 23
     },
     B: {
       PA: 15,
@@ -30,7 +31,8 @@ test('resumo deve indicar a quantidade de pontos e erros de cada equipe', () => 
       EA: 4,
       EB: 1,
       ES: 3,
-      EO: 0
+      EO: 0,
+      Pontuação: 25
     }
   });
 });

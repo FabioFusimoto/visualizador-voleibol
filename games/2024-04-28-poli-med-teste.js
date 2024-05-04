@@ -58,6 +58,10 @@ export const sets = [
     'A 19 S M 1 P', // 23:48
     'A 19 S L 1,B _ P B _,B _ A CX 5,A 14 D B _,A 5 A E _ P', // 24:17
     'A 19 S M 1,B _ P A _,B _ A MF 5,A 3 B R _ E' // 25:36
+  ],
+  [
+    '5 P,16 C,33 O,19 P,3 C,20 LE,14 LI',
+    '1 C,2 LE,4 P,18 C,9 O,8 P,10 LI'
   ]
 ];
 
