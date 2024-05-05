@@ -41,7 +41,7 @@ const TabelaVisaoGeral = ({ nomeTabela, cabecalho, linhas, dados }) => (
 );
 
 const Estatisticas = ({ dadosEstatisticos }) => {
-  const cabecalhoPadrao = ['Competência', 'Time A', 'Time B'];
+  const cabecalhoPadrao = ['Variação', 'Time A', 'Time B'];
 
   const resumoLinhas = [
     'PA',
@@ -58,7 +58,8 @@ const Estatisticas = ({ dadosEstatisticos }) => {
   const aproveitamentoGeralDeAtaqueLinhas = [
     'Ponto',
     'Erro',
-    'Seguiu o rally'
+    'Seguiu o rally',
+    'Eficiência'
   ];
 
   const aproveitamentoGeralDeBloqueioLinhas = [
@@ -87,13 +88,15 @@ const Estatisticas = ({ dadosEstatisticos }) => {
   ];
 
   if (!dadosEstatisticos) {
-    return (<Typography variant='h4'>Nenhuma estatística para exibir</Typography>);
+    return (<Typography variant='h4'>Selecione uma estatística para exibir</Typography>);
   }
 
   return (
     (dadosEstatisticos.resumo &&
         dadosEstatisticos.aproveitamentoGeralDeAtaque &&
         dadosEstatisticos.aproveitamentoGeralDeBloqueio &&
+        dadosEstatisticos.aproveitamentoGeralDePasse &&
+        dadosEstatisticos.aproveitamentoGeralDeDefesa &&
           <Box display='flex' justifyContent='space-between'>
             <Box mr={4}>
               <TabelaVisaoGeral

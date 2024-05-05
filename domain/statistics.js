@@ -68,13 +68,20 @@ export const resumo = (sequenciaDePontos) => {
   }, accInicial);
 };
 
-const aproveitamentoGeralDeAtaqueDoTime = (acoesDeAtaqueDoTime) => (
-  acoesDeAtaqueDoTime.reduce((acc, { resultado }) => {
+const aproveitamentoGeralDeAtaqueDoTime = (acoesDeAtaqueDoTime) => {
+  const histogramaAtaques = acoesDeAtaqueDoTime.reduce((acc, { resultado }) => {
     const accClone = { ...acc };
     accClone[resultado] = accClone[resultado] + 1;
     return accClone;
-  }, { Erro: 0, Ponto: 0, 'Seguiu o rally': 0 })
-);
+  }, { Erro: 0, Ponto: 0, 'Seguiu o rally': 0 });
+
+  const eficiencia = 100 * (histogramaAtaques.Ponto / acoesDeAtaqueDoTime.length);
+
+  return ({
+    ...histogramaAtaques,
+    ...{ Eficiência: `${eficiencia.toFixed(0)}%` }
+  });
+};
 
 export const aproveitamentoGeralDeAtaque = (sequenciaDePontos) => {
   const acoesConcatenadas = sequenciaDePontos.reduce((acc, acoes) => acc.concat(acoes), []);

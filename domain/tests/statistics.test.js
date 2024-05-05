@@ -44,12 +44,14 @@ test('aproveitamentoGeralDeAtaque deve indicar estatísticas gerais sobre o ataq
     A: {
       Erro: 4,
       Ponto: 11,
-      'Seguiu o rally': 12
+      'Seguiu o rally': 12,
+      Eficiência: '41%'
     },
     B: {
       Erro: 4,
       Ponto: 15,
-      'Seguiu o rally': 12
+      'Seguiu o rally': 12,
+      Eficiência: '48%'
     }
   });
 });
